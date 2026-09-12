@@ -1,0 +1,486 @@
+{
+  "name": "Recruitment Application Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Resume Submission Form ",
+        "formDescription": "Please submit your resume and provide your basic information below. Your information will be used for recruitment and candidate evaluation purposes.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Full Name",
+              "placeholder": "e.g. John Tan"
+            },
+            {
+              "fieldLabel": "Email Adress",
+              "fieldType": "email",
+              "placeholder": "e.g. john.tan@email.com"
+            },
+            {
+              "fieldLabel": "Phone Number",
+              "fieldType": "number",
+              "placeholder": "e.g. 012-3456789"
+            },
+            {
+              "fieldLabel": "Years of Experience",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "1-2"
+                  },
+                  {
+                    "option": "3-4"
+                  },
+                  {
+                    "option": ">5"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "CV Upload",
+              "fieldType": "file"
+            },
+            {
+              "fieldLabel": "Position Applied for",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Data Analyst"
+                  },
+                  {
+                    "option": "Business Intelligence"
+                  },
+                  {
+                    "option": "Data Operation Analyst"
+                  },
+                  {
+                    "option": "Data Scientist"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        -352,
+        -80
+      ],
+      "id": "5677d433-f0a4-4000-b583-7dceb2f1306b",
+      "name": "On form submission",
+      "webhookId": "b1c867a2-7c7d-4dd7-9f15-379c3ecf3732"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1iw947Hqw4YBtbF5-sJsih4IEPmNt6W9uE4dCRjX-Gws",
+          "mode": "list",
+          "cachedResultName": "Jimmy Sdn Bhd's Applications",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iw947Hqw4YBtbF5-sJsih4IEPmNt6W9uE4dCRjX-Gws/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iw947Hqw4YBtbF5-sJsih4IEPmNt6W9uE4dCRjX-Gws/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $('On form submission').item.json['Full Name'] }}",
+            "Phone Number": "={{ $('On form submission').item.json['Phone Number'] }}",
+            "Email": "={{ $('On form submission').item.json['Email Adress'] }}",
+            "Year of Experience": "={{ $('On form submission').item.json['Years of Experience'] }}",
+            "Position Applied For": "={{ $('On form submission').item.json['Position Applied for'] }}",
+            "Resume Text": "={{ $('On form submission').item.json['CV Upload'][0].filename }}",
+            "Resume PDF": "={{ $json.webViewLink }}",
+            "AI Score": "={{ $('Code in JavaScript').item.json.score }}",
+            "AI Summary": "={{ $('Code in JavaScript').item.json.summary }}",
+            "Ai Recommendation": "={{ $('Code in JavaScript').item.json.recommendation }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone Number",
+              "displayName": "Phone Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Year of Experience",
+              "displayName": "Year of Experience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Position Applied For",
+              "displayName": "Position Applied For",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Resume Text",
+              "displayName": "Resume Text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI Summary",
+              "displayName": "AI Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI Score",
+              "displayName": "AI Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Resume PDF",
+              "displayName": "Resume PDF",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Ai Recommendation",
+              "displayName": "Ai Recommendation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        800,
+        -128
+      ],
+      "id": "d13dcc29-38fa-4953-8581-4b00035608cb",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "lh17EdPm2ohFbtq9",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "CV_Upload",
+        "name": "={{ $json['Full Name'] }}-{{ $json['Position Applied for'] }}-Resume.pdf",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1dRsag7wNTc_D_SGixen888iVZL958BN5",
+          "mode": "list",
+          "cachedResultName": "N8N First Project - Applicant's Resume Folder",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1dRsag7wNTc_D_SGixen888iVZL958BN5"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -80,
+        -240
+      ],
+      "id": "e15775be-0409-47e3-81aa-ad0346a5efcf",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "gdL8Kfmpq5Aep9TV",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "teohziheng2002@gmail.com",
+        "subject": "=Application Received – {{ $json[\"Position Applied For\"] }}",
+        "emailType": "text",
+        "message": "=Hi {{ $json.Name }},  Thank you for submitting your application for the {{ $json[\"Position Applied For\"] }} position.  We have received your application and resume successfully. Our team will review your application, and we will contact you if your profile is shortlisted for the next stage.  Thank you for your interest in the opportunity. \n\nBest regards, Recruitment Team",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        992,
+        -128
+      ],
+      "id": "bba73d43-78f6-4710-a59d-1056cbf3d7a4",
+      "name": "Send a message",
+      "webhookId": "02b80789-bda1-4d3f-b488-17596dac8f68",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "7t5Q6P2KQBlopeDw",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Please analyse this candidate for the position of:\n\nPosition:\n{{ $('On form submission').item.json['Position Applied for'] }}\n\nResume:\n{{ $json.text }}\n\nEvaluate the candidate based on:\n1. Education relevance\n2. Technical skills\n3. Work experience\n4. Relevance to the applied position\n5. Overall suitability\n\nBase the evaluation only on information explicitly available in the resume.\n\nReturn the evaluation according to the required structured output format.",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Return ONLY valid JSON.\n\nThe response must follow exactly this structure:\n\n{\n  \"score\": 0,\n  \"recommendation\": \"Shortlist\",\n  \"key_strengths\": [],\n  \"key_concerns\": [],\n  \"summary\": \"\"\n}\n\nRules:\n- score must be an integer from 0 to 100\n- recommendation must be exactly one of:\n  \"Shortlist\", \"Consider\", \"Reject\"\n- key_strengths must be an array of strings\n- key_concerns must be an array of strings\n- summary must be a string\n- Do not use markdown\n- Do not use ```json\n- Do not include any text before or after the JSON"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        96,
+        16
+      ],
+      "id": "ffc1365f-bdfd-4b8e-a28e-542d469951cf",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "=CV_Upload",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -80,
+        16
+      ],
+      "id": "1be28f8a-5a30-4ece-9f1b-85635a0f8e5a",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "model": "nvidia/nemotron-3-super-120b-a12b:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        96,
+        224
+      ],
+      "id": "b684f5a9-ac60-4427-8f5e-6e33f09ea264",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "bpQ4Lmn0oannF76Q",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        592,
+        -128
+      ],
+      "id": "a104d067-c467-4583-abde-af4f86f53750",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $json.text ?? $json.output;\n\nif (!raw) {\n  throw new Error('No AI response found');\n}\n\nlet cleaned = raw.trim();\n\ncleaned = cleaned\n  .replace(/^```json\\s*/i, '')\n  .replace(/^```\\s*/i, '')\n  .replace(/\\s*```$/i, '');\n\nconst parsed = JSON.parse(cleaned);\n\nreturn {\n  json: parsed\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        16
+      ],
+      "id": "462a47a7-c256-4954-b7a8-5c71da890710",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "35150510-0e90-467f-89ad-ad9dab396f03",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5b9dec66ea769913758571b2cd9cf60c7a20de1a65fcda67ffe39a43b2009510"
+  },
+  "nodeGroups": [],
+  "id": "8QZG2qpq0Gj6ThPs",
+  "tags": []
+}
